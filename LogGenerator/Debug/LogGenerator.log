@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\suuup\source\repos\loggenerator\loggenerator\source.cpp(69): warning C4302: приведение типов: усечение из "const char *" к "char"
+c:\users\suuup\source\repos\loggenerator\loggenerator\source.cpp(83): warning C4302: приведение типов: усечение из "const char *" к "char"
+c:\users\suuup\source\repos\loggenerator\loggenerator\source.cpp(213): warning C4302: приведение типов: усечение из "const char *" к "char"
+  LogGenerator.vcxproj -> C:\Users\suuup\source\repos\LogGenerator\Debug\LogGenerator.exe
