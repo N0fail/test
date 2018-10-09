@@ -55,9 +55,9 @@ object* contextGenerator()
 object* intAnswerGenerator()
 {
 	std::string ansName = "answer_";
-	ansName += rand();
+	ansName += std::to_string(rand());
 	ansName += "_";
-	ansName += rand();
+	ansName += std::to_string(rand());
 	intObject* intAnswer = new intObject(ansName, someInt);
 	return intAnswer;
 };
@@ -65,8 +65,8 @@ object* intAnswerGenerator()
 object* stringAnswerGenerator()
 {
 	std::string ansName = "answer_";
-	for (int i = 0; i < 15 + rand()%10; ++i)
-		ansName += (char)("A" + rand() % 26);
+	for (int i = 0; i < 15 + rand() % 10; ++i)
+		ansName += (char)('a' + rand() % 26);
 	stringObject* stringAnswer = new stringObject(ansName, someStr);
 	return stringAnswer;
 };
@@ -80,7 +80,7 @@ object* arrayAnswerGenerator(int level = 0)
 	std::string ansName = "answer_";
 
 	for (int i = 0; i < 15 + rand() % 10; ++i)
-		ansName += (char)("A" + rand() % 26);
+		ansName += (char)('a' + rand() % 26);
 
 	arrayOfStringsObject* arrayAnswer = new arrayOfStringsObject(ansName, arrayOfStrings, choiceCount, level);
 	return arrayAnswer;
@@ -210,7 +210,7 @@ object* problem_idGenerator()
 {
 	std::string problemName = "problem_";
 	for (int i = 0; i < 15 + rand() % 10; ++i)
-		problemName += (char)("A" + rand() % 26);
+		problemName += (char)('A' + rand() % 26);
 	stringObject* problem_id = new stringObject("problem_id", problemName);
 	return problem_id;
 };
@@ -322,7 +322,7 @@ object* ipGenerator()//скорее всего не значимый параметр
 	std::string ipStr = "";
 	for (int i = 0; i < 3; ++i)
 		ipStr += std::to_string(rand() % 256) + ".";
-	ipStr += rand() % 256;
+	ipStr += std::to_string(rand() % 256);
 	stringObject* ip = new stringObject("ip", ipStr);
 	return ip;
 };
@@ -391,16 +391,23 @@ objectGroup* mainGenerator()
 
 int main()
 {
-	std::ofstream output("log.txt");
+	std::ofstream output("log.json");
 	std::string outStr = "";
-	for (int i = 0; i < 10000; ++i)
+	objectGroup* fullLogGroup = new objectGroup();
+	jsonObject* fullLog = new jsonObject("", fullLogGroup);
+	for (int i = 0; i < 1000; ++i)
 	{
-		outStr = "\n\n";
+		//outStr = "\n\n";
 		objectGroup* mainGroup = mainGenerator();
-		mainGroup->signUp(outStr);
-		output << outStr;
-		output << ",";
+		jsonObject* singleLog = new jsonObject("log#" + std::to_string(i), mainGroup);
+		fullLogGroup->addObject(singleLog);
+		//mainGroup->signUp(outStr);
+		//output << outStr;
+		//output << ",";
 		//добавить деструкторы
 	}
+	//outStr = "\n\n";
+	fullLogGroup->signUp(outStr);
+	output << outStr;
 	return 0;
 }
