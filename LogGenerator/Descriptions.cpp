@@ -69,6 +69,7 @@ boolObject::boolObject(std::string _name, int _content) : object(_name)
 
 int boolObject::signUp(std::string& outStr)
 {
+	object::signUp(outStr);
 	if (content == nullBool)
 		outStr += "null";
 	else
@@ -90,7 +91,7 @@ arrayOfStringsObject::arrayOfStringsObject(std::string _name, std::string* _cont
 int arrayOfStringsObject::signUp(std::string &outStr)
 {
 	object::signUp(outStr);
-	outStr += ": [\n";
+	outStr += "[\n";
 	std::string tab = "";
 	for (int i = 0; i < level; ++i)
 		tab += "	";

@@ -399,6 +399,7 @@ int main()
 		objectGroup* mainGroup = mainGenerator();
 		mainGroup->signUp(outStr);
 		output << outStr;
+		output << ",";
 		//добавить деструкторы
 	}
 	return 0;
