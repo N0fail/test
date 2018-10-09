@@ -97,13 +97,13 @@ int arrayOfStringsObject::signUp(std::string &outStr)
 		tab += "	";
 	for (int i = 0; i < contentLength - 1; ++i)
 	{
-		outStr += tab + "	";
+		outStr += tab + "	\"";
 		outStr += content[i];
-		outStr += ",\n";
+		outStr += "\",\n";
 	}
-	outStr += tab + "	";
+	outStr += tab + "	\"";
 	outStr += content[contentLength - 1];
-	outStr += "\n";
+	outStr += "\"\n";
 	outStr += tab;
 	outStr += "]";
 	return 0;
